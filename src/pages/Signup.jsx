@@ -1,9 +1,9 @@
-import { Signup as SignupComponent } from "../components"
+import { Signup as SignupComponent } from "../components";
 
-export default function Signup(){
-    return(
-        <div className="py-8">
-            <SignupComponent/>
-        </div>
-    )
+export default function Signup() {
+  return (
+    <div className="py-8">
+      <SignupComponent />
+    </div>
+  );
 }
