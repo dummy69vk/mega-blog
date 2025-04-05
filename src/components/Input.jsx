@@ -28,3 +28,22 @@ const Input = forwardRef(function Input(
 });
 
 export default Input;
+
+// React 18 and earlier: You needed forwardRef to pass a ref into a child.
+// React 19: React handles it better internally, and you often don’t need forwardRef anymore for simple wrappers.
+
+//  Input.js
+// const Input = ({ label, type = 'text', ...props }) => {
+//   return (
+//     <div className="mb-4">
+//       <label className="block text-sm font-medium mb-1">{label}</label>
+//       <input
+//         type={type}
+//         className="w-full px-3 py-2 border rounded"
+//         {...props} // ref will just work
+//       />
+//     </div>
+//   );
+// };
+
+// export default Input;
