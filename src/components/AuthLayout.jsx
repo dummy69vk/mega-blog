@@ -19,3 +19,5 @@ export default function Protected({ children, authentication = true }) {
   }, [authStatus, navigate, authentication]);
   return loader ? <h1>Loading...</h1> : <>{children}</>;
 }
+
+//THIS IS A PROTECTED CONTAINER....DEKHO HAM SEPERATLY HAR COMPONENT MAI LOG IN H KI NAHI CHECK KARNE KI JAGAH EK AUTHLAYOUT BNAYEGNE JO EK PROTECTED CONTAINER KI TARAH KAAM KAREGA AUR AGAR ALLOWED HOGA TABHI APNE CHILDREN LOAD KARVYEGA...MORE CLEAR PICTURE MAIN.JSX DEKH USSE PATA LAGEGI
