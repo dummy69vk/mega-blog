@@ -60,7 +60,7 @@ function Login() {
               label="Email: "
               placeholder="Enter your email"
               type="email"
-              {...register("email", {
+              {...register("email" /*THIS IS HTML NAME ATTR AND NOT TYPE*/, {
                 required: true,
                 validate: {
                   matchPatern: (value) =>
