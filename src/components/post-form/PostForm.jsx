@@ -77,8 +77,10 @@ export default function PostForm({ post }) {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => subscription.unsubscribe(); //FOR OPTIMIZATION WHNEVER YOU USE USEEFFECT DO .unsubscribe() AND STORE THE FN IN A VARIABLE
   }, [watch, slugTransform, setValue]);
+
+  // You didn’t call subscribe because watch from React Hook Form does that behind the scenes when you pass a function to it. It runs your callback automatically when the form updates. But this won’t happen with a custom function — you’d have to manually write the logic to track changes and call your function.
 
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
