@@ -5,22 +5,26 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const isLoggedIn = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    appwriteSerive
-      .getPosts([])
-      .then((posts) => {
-        if (posts) {
-          setPosts(posts.documents);
-        }
-      })
-      .catch((error) => {
-        setPosts([]);
-      });
-  }, [useSelector((state) => state.auth.status)]);
+    if (isLoggedIn) {
+      appwriteSerive
+        .getPosts([])
+        .then((posts) => {
+          if (posts) {
+            setPosts(posts.documents);
+          }
+        })
+        .catch((error) => {
+          setPosts([]);
+        });
+    } else {
+      setPosts([]);
+    }
+  }, [isLoggedIn]);
 
-  if (posts.length === 0) {
-    // When there is no Post to show --> Show this message
+  if (!isLoggedIn) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
@@ -36,8 +40,23 @@ export default function Home() {
     );
   }
 
+  if (isLoggedIn && posts.length === 0) {
+    return (
+      <div className="w-full py-8 mt-4 text-center">
+        <Container>
+          <div className="flex flex-wrap">
+            <div className="p-2 w-full">
+              <h1 className="text-2xl font-bold hover:text-gray-500">
+                No posts available
+              </h1>
+            </div>
+          </div>
+        </Container>
+      </div>
+    );
+  }
+
   return (
-    // When there are Posts to show --> Show all the posts
     <div className="w-full py-8">
       <Container>
         <div className="flex flex-wrap">
@@ -51,3 +70,7 @@ export default function Home() {
     </div>
   );
 }
+
+// ❌ Don't call useSelector() directly inside the useEffect() dependency array.
+
+// ✅ Do store the result of useSelector() in a variable and use that variable.
