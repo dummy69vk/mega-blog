@@ -2,7 +2,7 @@ import { forwardRef, useId } from "react";
 
 function Select({ options, label, className = "", ...props }, ref) {
   const id = useId(); // To generate a unique id for the select element
-
+  //An option is a separate prop (e.g., options) when using a data-driven approach in a custom select component.
   return (
     <div className="w-full">
       {label && <label htmlFor={id} className=""></label>}
